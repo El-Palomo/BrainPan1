@@ -49,3 +49,8 @@ OS CPE: cpe:/o:linux:linux_kernel:2.6 cpe:/o:linux:linux_kernel:3
 OS details: Linux 2.6.32 - 3.10
 
 ``` 
+## Enumeracion de Carpetas 
+
+
+
+
