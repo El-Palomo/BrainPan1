@@ -11,7 +11,6 @@ Not shown: 65533 closed ports
 PORT      STATE SERVICE VERSION
 9999/tcp  open  abyss?
 10000/tcp open  http    SimpleHTTPServer 0.6 (Python 2.7.3)
-1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
 SF-Port9999-TCP:V=7.80%I=7%D=2/9%Time=6023014A%P=x86_64-pc-linux-gnu%r(NUL
 SF:L,298,"_\|\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
 SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20_\|\x20\x20\x20\x20\
