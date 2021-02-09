@@ -53,6 +53,26 @@ OS details: Linux 2.6.32 - 3.10
 
 ## Enumeracion de Carpetas 
 
+```
+root@kali:~# gobuster dir -u http://192.168.78.134:10000/ -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://192.168.78.134:10000/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-1.0.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2021/02/09 17:01:30 Starting gobuster
+===============================================================
+/bin (Status: 301)
+===============================================================
+2021/02/09 17:02:57 Finished
+===============================================================
 
+```
 
 
