@@ -3,6 +3,7 @@ Desarrrollo del CTF BrainPan 1. Download: https://www.vulnhub.com/entry/brainpan
 
 ## Escaneo de Puertos
 ``` 
+root@kali:~# nmap --disable-arp-ping -n -P0 -p- -T5 -O -sV 192.168.78.134
 Starting Nmap 7.80 ( https://nmap.org ) at 2021-02-09 16:40 EST
 Nmap scan report for 192.168.78.134
 Host is up (0.00096s latency).
@@ -46,6 +47,5 @@ Device type: general purpose
 Running: Linux 2.6.X|3.X
 OS CPE: cpe:/o:linux:linux_kernel:2.6 cpe:/o:linux:linux_kernel:3
 OS details: Linux 2.6.32 - 3.10
-Network Distance: 1 hop
 
 ``` 
