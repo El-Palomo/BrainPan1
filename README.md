@@ -76,4 +76,10 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ```
 <img src="https://github.com/El-Palomo/BrainPan1/blob/main/brain2.jpg" width="60%"></img>
 
+## Buffer Overflow Windows
+
+### Fuzzing
+
+
+
 
