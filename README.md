@@ -49,7 +49,7 @@ OS CPE: cpe:/o:linux:linux_kernel:2.6 cpe:/o:linux:linux_kernel:3
 OS details: Linux 2.6.32 - 3.10
 
 ``` 
-<img src="https://github.com/El-Palomo/BrainPan1/blob/main/image.png" width="30%"></img>
+<img src="https://github.com/El-Palomo/BrainPan1/blob/main/image.png" width="60%"></img>
 
 
 ## Enumeracion de Carpetas 
